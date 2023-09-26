@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
     desc: {type: String},
     stockQuantity: {type: Number},
     price: {type: Number},
+    filters: {type: Array}, 
     images: {type: Array},
     characteristics: {type: Array},
     section: Schema.Types.ObjectId
