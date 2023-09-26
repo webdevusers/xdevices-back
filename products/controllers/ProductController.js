@@ -51,5 +51,22 @@ router.get('/getProductsBySection/:sectionID', async (req, res) => {
         res.status(500).json({ error: `${e}` });
     }
 });
+router.get('/getFiltersBySection/:sectionID', async (req, res) => {
+    try {
+        const { sectionID } = req.params;
+
+        const section = await SectionModel.findById(sectionID).populate('products');
+        if (!section) {
+            return res.status(404).json({ status: 'Section does not exist' });
+        }
+
+        const filters = []; // Здесь вы можете создать логику для получения фильтров из товаров в разделе section
+
+        res.status(200).json({ filters });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: `${e}` });
+    }
+});
 
 module.exports = router;
