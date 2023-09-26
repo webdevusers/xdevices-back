@@ -55,7 +55,7 @@ router.get('/getFiltersBySection/:sectionID', async (req, res) => {
     try {
         const { sectionID } = req.params;
 
-        const section = await SectionModel.findById(sectionID).populate('products');
+        const section = await SectionModel.findById(sectionID).populate('products.filters');
         if (!section) {
             return res.status(404).json({ status: 'Section does not exist' });
         }
